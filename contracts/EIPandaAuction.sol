@@ -1,3 +1,18 @@
+// SPDX-License-Identifier: MIT
+
+/// @title The Save the EIPandas Auction House
+
+/*************************************************************************************************
+    )\ )                       )    )              )\ ) )\ )    (      ( /(  )\ )    (      )\ )  
+    (()/(    )   )      (    ( /( ( /(    (    (   (()/((()/(    )\     )\())(()/(    )\    (()/(  
+    /(_))( /(  /((    ))\   )\()))\())  ))\   )\   /(_))/(_))((((_)(  ((_)\  /(_))((((_)(   /(_)) 
+    (_))  )(_))(_))\  /((_) (_))/((_)\  /((_) ((_) (_)) (_))   )\ _ )\  _((_)(_))_  )\ _ )\ (_))   
+    / __|((_)_ _)((_)(_))   | |_ | |(_)(_))   | __||_ _|| _ \  (_)_\(_)| \| | |   \ (_)_\(_)/ __|  
+    \__ \/ _` |\ V / / -_)  |  _|| ' \ / -_)  | _|  | | |  _/   / _ \  | .` | | |) | / _ \  \__ \  
+    |___/\__,_| \_/  \___|   \__||_||_|\___|  |___||___||_|    /_/ \_\ |_|\_| |___/ /_/ \_\ |___/  
+                                                                                               
+ *************************************************************************************************/
+
 pragma solidity ^0.8.18;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
@@ -18,6 +33,9 @@ contract EIPandaAuction is ReentrancyGuard, Ownable {
     uint256 public constant RESERVE_PRICE = 0.01 ether;
     Auction public currentAuction;
     bool public auctionInProgress;
+    
+    // The minimum percentage difference between the last bid amount and the current bid
+    uint8 public minBidIncrementPercentage;
 
     event PandaDeposited(uint256 tokenId);
     event AuctionStarted(uint256 tokenId, uint256 endTime);
